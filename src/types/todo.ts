@@ -1,20 +1,27 @@
 export type TodoStore = {
   todos: Todo[];
   completedCount: number;
+  stepCompletedCount: number;
   addTodo: (todo: Todo) => void;
   editTodo: (id: string, title: string, isCompleted: boolean) => void;
   setCompletedCount: (count: number) => void;
+  setStepCompletedCount: (count: number) => void;
   removeTodo: (id: string) => void;
-  addTodoStep: (id: string, step: string) => void;
-  editTodoStep: (id: string, step: string) => void;
-  removeTodoStep: (id: string, step: string) => void;
+  addTodoStep: (id: string, step: Step) => void;
+  editTodoStep: (
+    todoId: string,
+    stepId: string,
+    title: string,
+    completed: boolean
+  ) => void;
+  removeTodoStep: (id: string, step: Step) => void;
 };
 
 export interface Todo {
   id: string;
   title: string;
   completed: boolean;
-  steps: string[];
+  steps: Step[];
   createdAt: Date;
 }
 

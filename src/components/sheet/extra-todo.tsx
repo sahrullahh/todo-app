@@ -4,6 +4,8 @@ import { Todo } from "../../types/todo";
 import { useTodoStore } from "../../store/todo";
 import moment from "moment";
 import { Icon } from "@iconify/react";
+import { v4 as uuidv4 } from "uuid";
+import { Step } from "../../types/todo";
 
 export default function ExtraTodo({
   isOpen,
@@ -15,25 +17,42 @@ export default function ExtraTodo({
   data: Todo;
 }) {
   const addStep = useTodoStore((state) => state.addTodoStep);
+  const editStep = useTodoStore((state) => state.editTodoStep);
 
   const [isAddingStep, setIsAddingStep] = useState(false);
-  const [step, setStep] = useState("");
+  const [step, setStep] = useState({
+    id: "",
+    title: "",
+    completed: false,
+  });
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleAddStepClick = () => {
     setIsAddingStep(true);
   };
 
+  console.log(data);
+
   const handleSubmitStep = () => {
-    if (step.trim()) {
-      addStep(data.id, step.trim());
-      setStep("");
+    const steps: Step = {
+      id: step.id,
+      title: step.title.trim(),
+      completed: step.completed,
+    };
+
+    if (step.title.trim()) {
+      addStep(data.id, steps);
+      setStep({ id: "", title: "", completed: false });
       setIsAddingStep(false);
     }
     setIsAddingStep(false);
   };
 
-  const handleDeleteStep = (step: string) => {
+  const handleToggleStep = (checked: boolean, step: Step) => {
+    editStep(data.id, step.id, step.title, checked);
+  };
+
+  const handleDeleteStep = (step: Step) => {
     useTodoStore.getState().removeTodoStep(data.id, step);
   };
 
@@ -68,10 +87,12 @@ export default function ExtraTodo({
                 <input
                   type="checkbox"
                   name="step"
+                  onChange={(e) => handleToggleStep(e.target.checked, step)}
+                  checked={step.completed}
                   id={`step-${idx}`}
                   className="accent-green-500 peer"
                 />
-                <span className="peer-checked:line-through">{step}</span>
+                <span className="peer-checked:line-through">{step.title}</span>
               </div>
               <div className="group-hover:flex hidden  items-center">
                 <button
@@ -88,13 +109,23 @@ export default function ExtraTodo({
             <div className="flex items-center gap-2">
               <input
                 ref={inputRef}
-                value={step}
-                onChange={(e) => setStep(e.target.value)}
+                value={step.title}
+                onChange={(e) =>
+                  setStep({
+                    id: uuidv4(),
+                    title: e.target.value,
+                    completed: false,
+                  })
+                }
                 onBlur={() => handleSubmitStep()}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") handleSubmitStep();
                   if (e.key === "Escape") {
-                    setStep("");
+                    setStep({
+                      id: "",
+                      title: "",
+                      completed: false,
+                    });
                     setIsAddingStep(false);
                   }
                 }}

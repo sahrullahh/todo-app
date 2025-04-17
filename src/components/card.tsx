@@ -17,16 +17,20 @@ export default function Card({
 
   const todos = useTodoStore((state) => state.todos);
   const steps = todos.find((todo) => todo.id === id)?.steps || [];
+
+  const setStepCompletedCount = useTodoStore(
+    (state) => state.setStepCompletedCount
+  );
   const setCompletedCount = useTodoStore((state) => state.setCompletedCount);
   const editTodo = useTodoStore((state) => state.editTodo);
   const removeTodo = useTodoStore((state) => state.removeTodo);
+  const stepCompletedCount = useTodoStore((state) => state.stepCompletedCount);
 
   useEffect(() => {
     setCompletedCount(todos.filter((todo) => todo.completed).length);
+    setStepCompletedCount(steps.filter((step) => step.completed).length);
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
-
-  console.log(todos);
 
   const handleSave = (id: string, title: string) => {
     setIsEditing(false);
@@ -91,7 +95,7 @@ export default function Card({
                   steps.length > 0 ? "block" : "hidden"
                 }`}
               >
-                Step 0 of {steps.length}
+                Step {stepCompletedCount} of {steps.length}
               </p>
             </span>
           </>

@@ -4,6 +4,8 @@ import { TodoStore } from "../types/todo";
 export const useTodoStore = create<TodoStore>((set) => ({
   todos: JSON.parse(localStorage.getItem("todos") || "[]"),
   completedCount: 0,
+  stepCompletedCount: 0,
+
   addTodo: (todo) => set((state) => ({ todos: [...state.todos, todo] })),
   editTodo: (id, title, isCompleted) =>
     set((state) => ({
@@ -27,10 +29,23 @@ export const useTodoStore = create<TodoStore>((set) => ({
         todo.id === id ? { ...todo, steps: [...todo.steps, step] } : todo
       ),
     })),
-  editTodoStep: (id, step) =>
+  setStepCompletedCount: (count) => set({ stepCompletedCount: count }),
+  editTodoStep: (
+    todoId: string,
+    stepId: string,
+    title: string,
+    completed: boolean
+  ) =>
     set((state) => ({
       todos: state.todos.map((todo) =>
-        todo.id === id ? { ...todo, steps: [...todo.steps, step] } : todo
+        todo.id === todoId
+          ? {
+              ...todo,
+              steps: todo.steps.map((step) =>
+                step.id === stepId ? { ...step, title, completed } : step
+              ),
+            }
+          : todo
       ),
     })),
   removeTodoStep: (id, step) =>
