@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Todo, TodoStore } from "../types/todo";
+import { TodoStore } from "../types/todo";
 
 export const useTodoStore = create<TodoStore>((set) => ({
   todos: JSON.parse(localStorage.getItem("todos") || "[]"),

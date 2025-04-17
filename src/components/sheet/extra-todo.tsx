@@ -15,7 +15,7 @@ export default function ExtraTodo({
   data: Todo;
 }) {
   const addStep = useTodoStore((state) => state.addTodoStep);
-  
+
   const [isAddingStep, setIsAddingStep] = useState(false);
   const [step, setStep] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
