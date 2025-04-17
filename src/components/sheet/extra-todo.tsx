@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import { Sheet, SheetContent } from "../ui/sheet";
-import { Todo } from "../../types/todo";
-import { useTodoStore } from "../../store/todo";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { Todo } from "@/types/todo";
+import { useTodoStore } from "@/store/todo";
 import moment from "moment";
 import { Icon } from "@iconify/react";
 import { v4 as uuidv4 } from "uuid";
-import { Step } from "../../types/todo";
+import { Step } from "@/types/todo";
 
 export default function ExtraTodo({
   isOpen,

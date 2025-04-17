@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { useState, useEffect } from "react";
-import { useTodoStore } from "../store/todo";
-import ExtraTodo from "./sheet/extra-todo";
+import { useTodoStore } from "@/store/todo";
+import ExtraTodo from "@/components/sheet/extra-todo";
 export default function Card({
   title,
   id,
@@ -21,6 +21,7 @@ export default function Card({
   const setStepCompletedCount = useTodoStore(
     (state) => state.setStepCompletedCount
   );
+
   const setCompletedCount = useTodoStore((state) => state.setCompletedCount);
   const editTodo = useTodoStore((state) => state.editTodo);
   const removeTodo = useTodoStore((state) => state.removeTodo);

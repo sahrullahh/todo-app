@@ -7,9 +7,9 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from "../../components/ui/drawer";
+} from "@/components/ui/drawer";
 
-import { useTodoStore } from "../../store/todo";
+import { useTodoStore } from "@/store/todo";
 
 export default function addTask({
   isOpen,

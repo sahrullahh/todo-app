@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Icon } from "@iconify/react";
-import AddTask from "../drawer/add-task";
+import AddTask from "@/components/drawer/add-task";
 export default function index() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const handleOpenDrawer = () => {
