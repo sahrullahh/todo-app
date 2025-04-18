@@ -95,7 +95,7 @@ export default function addTask({
           <DrawerFooter className="container max-w-xl mx-auto">
             <button
               onClick={handleAddTodo}
-              className="px-5 py-2 bg-green-600 text-white rounded-md font-semibold flex justify-center items-center gap-2"
+              className="px-5 py-2 cursor-pointer bg-green-600 text-white rounded-md font-semibold flex justify-center items-center gap-2"
             >
               Add Task
             </button>
