@@ -1,11 +1,11 @@
 export type TodoStore = {
   todos: Todo[];
   completedCount: number;
-  stepCompletedCount: number;
+  stepCompletedCount: { [id: string]: number };
   addTodo: (todo: Todo) => void;
   editTodo: (id: string, title: string, isCompleted: boolean) => void;
   setCompletedCount: (count: number) => void;
-  setStepCompletedCount: (count: number) => void;
+  setStepCompletedCount: (id: string, count: number) => void;
   removeTodo: (id: string) => void;
   addTodoStep: (id: string, step: Step) => void;
   editTodoStep: (

@@ -48,6 +48,13 @@ export default function addTask({
     const todo = { ...data, id: uuidv4() };
     addTodo(todo);
     handleOpen();
+    setData({
+      id: "",
+      title: "",
+      steps: [],
+      completed: false,
+      createdAt: new Date(),
+    });
   };
 
   return (

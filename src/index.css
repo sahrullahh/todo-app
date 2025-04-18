@@ -55,12 +55,27 @@
 .animate-progress-bar {
   animation: animate-progress-bar 80s linear infinite;
 }
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-in-out;
+}
 @keyframes animate-progress-bar {
   0% {
     background-position: 100% 0;
   }
   100% {
     background-position: 0 0;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

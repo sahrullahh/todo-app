@@ -34,12 +34,18 @@ export default function index() {
 
       <div className="space-y-3">
         {todos && todos.length > 0 ? (
-          todos.map((todo) => (
-            <Card
-              key={todo.id}
-              {...todo}
-            />
-          ))
+          todos
+            .sort(
+              (a, b) =>
+                new Date(b.createdAt!).getTime() -
+                new Date(a.createdAt!).getTime()
+            )
+            .map((todo) => (
+              <Card
+                key={todo.id}
+                {...todo}
+              />
+            ))
         ) : (
           <div className="pt-10">
             <p className="text-center font-semibold text-gray-500 text-xl">

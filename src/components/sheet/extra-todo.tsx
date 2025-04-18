@@ -31,8 +31,6 @@ export default function ExtraTodo({
     setIsAddingStep(true);
   };
 
-  console.log(data);
-
   const handleSubmitStep = () => {
     const steps: Step = {
       id: step.id,
@@ -73,7 +71,7 @@ export default function ExtraTodo({
             {data.title}
           </h1>
           <p className="text-gray-500 font-normal">
-            {moment(data.createdAt).format("DD MMMM YYYY")}
+            {moment(data.createdAt).format("dddd,DD MMMM, YYYY")}
           </p>
         </div>
         <div className="flex flex-col gap-4 w-full font-satoshi">

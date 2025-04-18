@@ -2,6 +2,8 @@ import { Icon } from "@iconify/react";
 import { useState, useEffect } from "react";
 import { useTodoStore } from "@/store/todo";
 import ExtraTodo from "@/components/sheet/extra-todo";
+import toast from "react-hot-toast";
+
 export default function Card({
   title,
   id,
@@ -27,19 +29,19 @@ export default function Card({
   const removeTodo = useTodoStore((state) => state.removeTodo);
   const stepCompletedCount = useTodoStore((state) => state.stepCompletedCount);
 
-  useEffect(() => {
-    setCompletedCount(todos.filter((todo) => todo.completed).length);
-    setStepCompletedCount(steps.filter((step) => step.completed).length);
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-
   const handleSave = (id: string, title: string) => {
     setIsEditing(false);
     editTodo(id, title, completed);
   };
 
   const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    editTodo(id, editedTitle, e.target.checked);
+    if (!steps.length) {
+      editTodo(id, editedTitle, e.target.checked);
+    } else {
+      toast.error(
+        "You cannot mark this to-do as completed because it has steps."
+      );
+    }
   };
 
   const handleOpenSheet = () => {
@@ -48,6 +50,23 @@ export default function Card({
   const handleDelete = (id: string) => {
     removeTodo(id);
   };
+
+  useEffect(() => {
+    setCompletedCount(todos.filter((todo) => todo.completed).length);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  useEffect(() => {
+    const count = steps.filter((step) => step.completed).length;
+    setStepCompletedCount(id, count);
+  }, [steps, id]);
+
+  useEffect(() => {
+    if (steps.length) {
+      const isCompleted = stepCompletedCount[id] === steps.length;
+      editTodo(id, title, isCompleted);
+    }
+  }, [stepCompletedCount, steps.length, id, title]);
 
   return (
     <div className="bg-white  transition-all w-full rounded-md shadow flex gap-4 group hover:bg-green-100/20 items-center p-2 hover:border-r-8 hover:border-green-600">
@@ -96,7 +115,7 @@ export default function Card({
                   steps.length > 0 ? "block" : "hidden"
                 }`}
               >
-                Step {stepCompletedCount} of {steps.length}
+                Step {stepCompletedCount[id]} of {steps.length}
               </p>
             </span>
           </>
