@@ -32,10 +32,10 @@ export default function ExtraTodo({
     setIsAddingStep(true);
   };
 
-  const handleEditStep = (step: Step) => {
-    setStep(step);
-    setIsEditing(true);
-  };
+  // const handleEditStep = (step: Step) => {
+  //   setStep(step);
+  //   setIsEditing(true);
+  // };
 
   const handleSubmitStep = () => {
     const steps: Step = {
