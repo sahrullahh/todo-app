@@ -22,6 +22,8 @@ export interface Todo {
   title: string;
   completed: boolean;
   steps: Step[];
+  dueDate?: Date;
+  priority?: 'low' | 'medium' | 'high';
   createdAt: Date;
 }
 

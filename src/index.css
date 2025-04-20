@@ -1,22 +1,22 @@
 @font-face {
-  font-family: "Satoshi";
-  src: url("./@fonts/TTF/Satoshi-Variable.ttf");
+  font-family: 'Satoshi';
+  src: url('./@fonts/TTF/Satoshi-Variable.ttf');
 }
 
 @font-face {
-  font-family: "Satoshi Bold";
-  src: url("./@fonts/OTF/Satoshi-Bold.otf") format("otf");
+  font-family: 'Satoshi Bold';
+  src: url('./@fonts/OTF/Satoshi-Bold.otf') format('otf');
 }
 
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-satoshi: "Satoshi", sans-serif;
-  --font-satoshi-bold: "Satoshi Bold", sans-serif;
+  --font-satoshi: 'Satoshi', sans-serif;
+  --font-satoshi-bold: 'Satoshi Bold', sans-serif;
 }
 
 .bg-stripes {
@@ -32,24 +32,17 @@
   );
 }
 .bg-clouds {
-  background-image: radial-gradient(
-      circle at 10% 20%,
-      rgba(255, 255, 255, 0.5) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(255, 255, 255, 0.4) 0%,
-      transparent 70%
-    ),
-    radial-gradient(
-      circle at 90% 30%,
-      rgba(255, 255, 255, 0.3) 0%,
-      transparent 50%
-    );
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.5) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4) 0%, transparent 70%),
+    radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
   background-color: #cce7ff; /* Sky blue */
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+button {
+  @apply cursor-pointer;
 }
 
 .animate-progress-bar {
