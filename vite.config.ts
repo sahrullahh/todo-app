@@ -11,6 +11,7 @@ export default defineConfig({
         enabled: true, // Aktifkan PWA saat development untuk debugging
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      filename: 'manifest.webmanifest',
       manifest: {
         name: 'Tododay',
         short_name: 'Tododay App',
