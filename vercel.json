@@ -1,11 +1,10 @@
 {
-  "builds": [
+  "buildCommand": "bun run build",
+  "outputDirectory": "dist",
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "buildCommand": "vite build --force"
-      }
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
