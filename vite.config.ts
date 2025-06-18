@@ -8,7 +8,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: {
-        enabled: true, // Aktifkan PWA saat development untuk debugging
+        enabled: false, // Aktifkan PWA saat development untuk debugging
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       filename: 'manifest.webmanifest',
