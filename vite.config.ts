@@ -12,18 +12,21 @@ export default defineConfig({
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'Nama Aplikasi Kamu',
-        short_name: 'Aplikasi',
-        description: 'Deskripsi aplikasi kamu',
-        theme_color: '#ffffff',
+        name: 'Tododay',
+        short_name: 'Tododay App',
+        description: 'A simple and elegant todo app for your daily tasks',
+        theme_color: '#00A63E',
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#ffffff',
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: '/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: 'pwa-512x512.png',
+            src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
           },
