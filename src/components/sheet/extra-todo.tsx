@@ -1,5 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
 import { Todo } from '@/types/todo';
 import { useTodoStore } from '@/store/todo';
 import moment from 'moment';
@@ -79,10 +90,32 @@ export default function ExtraTodo({
           </p>
         </div>
         <div className="flex flex-col gap-2">
+          <h1 className="font-semibold text-gray-800">Priority:</h1>
+          <Select>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select a priority task" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel className="font-semibold text-gray-800">Priority</SelectLabel>
+                <SelectItem value="high" className="text-red-500">
+                  High
+                </SelectItem>
+                <SelectItem value="medium" className="text-yellow-500">
+                  Medium
+                </SelectItem>
+                <SelectItem value="low" className="text-green-500">
+                  Low
+                </SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex flex-col gap-2">
           <p className="font-semibold text-gray-800">Due date :</p>
           <DueDatePicker />
         </div>
-        <div className="font-satoshi flex w-full flex-col gap-4">
+        <div className="font-satoshi mt-2 flex w-full flex-col gap-4 border-t pt-5">
           {data.steps.map((step, idx) => (
             <label
               key={idx}

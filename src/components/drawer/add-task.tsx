@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useState, useRef, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   Drawer,
@@ -7,9 +7,9 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from "@/components/ui/drawer";
+} from '@/components/ui/drawer';
 
-import { useTodoStore } from "@/store/todo";
+import { useTodoStore } from '@/store/todo';
 
 export default function addTask({
   isOpen,
@@ -19,8 +19,8 @@ export default function addTask({
   handleOpen: () => void;
 }) {
   const [data, setData] = useState({
-    id: "",
-    title: "",
+    id: '',
+    title: '',
     steps: [],
     completed: false,
     createdAt: new Date(),
@@ -43,14 +43,14 @@ export default function addTask({
   }, [isOpen]);
 
   const handleAddTodo = () => {
-    if (data.title === "" || data.title.trim() === "") return;
+    if (data.title === '' || data.title.trim() === '') return;
     setCharCount(50);
     const todo = { ...data, id: uuidv4() };
     addTodo(todo);
     handleOpen();
     setData({
-      id: "",
-      title: "",
+      id: '',
+      title: '',
       steps: [],
       completed: false,
       createdAt: new Date(),
@@ -59,13 +59,10 @@ export default function addTask({
 
   return (
     <>
-      <Drawer
-        open={isOpen}
-        onOpenChange={handleOpen}
-      >
+      <Drawer open={isOpen} onOpenChange={handleOpen}>
         <DrawerTitle className="sr-only">Add Task</DrawerTitle>
         <DrawerContent className="font-satoshi">
-          <DrawerHeader className="container max-w-xl mx-auto">
+          <DrawerHeader className="container mx-auto max-w-xl">
             <input
               name="titleTodo"
               id="titleTodo"
@@ -76,32 +73,32 @@ export default function addTask({
                 handleChangeCount(e);
               }}
               onKeyDown={(e) => {
-                if (e.key === "Enter") handleAddTodo();
+                if (e.key === 'Enter') handleAddTodo();
               }}
               maxLength={50}
               className={`p-3 focus:ring-2 ${
-                charCount === 0 ? "ring-red-500/20" : "focus:ring-green-500/20"
-              } rounded-md border border-gray-300 w-full focus:outline-none`}
+                charCount === 0 ? 'ring-red-500/20' : 'focus:ring-green-500/20'
+              } w-full rounded-md border border-gray-300 focus:outline-none`}
               placeholder="Write your title task here"
               required
             />
             <div className="flex justify-between">
-              <p className="text-gray-500 text-sm pt-2">
+              <p className="pt-2 text-sm text-gray-500">
                 Add a title to your task. You can add more details later.
               </p>
-              <p className="text-gray-500 text-sm pt-2">{charCount}</p>
+              <p className="pt-2 text-sm text-gray-500">{charCount}</p>
             </div>
           </DrawerHeader>
-          <DrawerFooter className="container max-w-xl mx-auto">
+          <DrawerFooter className="container mx-auto max-w-xl">
             <button
               onClick={handleAddTodo}
-              className="px-5 py-2 cursor-pointer bg-green-600 text-white rounded-md font-semibold flex justify-center items-center gap-2"
+              className="flex cursor-pointer items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-2 font-semibold text-white"
             >
               Add Task
             </button>
             <button
               onClick={handleOpen}
-              className="px-5 py-2 bg-gray-100/10 border text-gray-400 rounded-md font-semibold flex justify-center items-center gap-2"
+              className="flex items-center justify-center gap-2 rounded-md border bg-gray-100/10 px-5 py-2 font-semibold text-gray-400"
             >
               Cancel
             </button>

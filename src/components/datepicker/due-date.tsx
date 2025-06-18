@@ -16,7 +16,7 @@ export default function DueDatePicker() {
         <PopoverTrigger asChild>
           <button
             className={cn(
-              'flex w-full items-center justify-start rounded-md border px-3 py-2 text-left font-normal',
+              'flex w-full items-center justify-start rounded-md border px-3 py-2 text-left font-normal hover:bg-gray-50',
               !date && 'text-muted-foreground'
             )}
           >
