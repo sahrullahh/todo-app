@@ -1,5 +1,11 @@
 {
-  "buildCommand": "bun run build",
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    },
+    "TAILWIND_MODE": "build"
+  },
+  
   "outputDirectory": "dist",
   "rewrites": [
     {
