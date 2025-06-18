@@ -10,10 +10,7 @@
       "source": "/sw.js",
       "destination": "/sw.js"
     },
-    {
-      "source": "/workbox-*.js",
-      "destination": "/workbox-:splat"
-    },
+    { "source": "/workbox-:splat", "destination": "/workbox-:splat" },
     {
       "source": "/(.*)",
       "destination": "/index.html"
