@@ -3,6 +3,18 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/manifest.webmanifest",
+      "destination": "/manifest.webmanifest"
+    },
+    {
+      "source": "/sw.js",
+      "destination": "/sw.js"
+    },
+    {
+      "source": "/workbox-*.js",
+      "destination": "/workbox-:splat"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
